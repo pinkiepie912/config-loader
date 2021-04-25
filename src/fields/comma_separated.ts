@@ -1,6 +1,6 @@
 import BaseField from "./base";
 
-export default class StringField extends BaseField<string>{
+export default class CommaSeparatedStringField extends BaseField<string[]>{
   strip: boolean;
 
   constructor(strip: boolean = false, optional: boolean = false, defaultValue?: any) {
@@ -8,10 +8,10 @@ export default class StringField extends BaseField<string>{
     this.strip = strip;
   }
 
-  parseString(value: string): string {
+  parseString(value: string): string[] {
     if (this.strip) {
       value = value.replace(' ', '');
     }
-    return value
+    return value.split(',')
   }
 }

@@ -1,8 +1,8 @@
-export default class BaseField {
+export default abstract class BaseField<T> {
   optional: boolean
-  defaultValue?: any
+  defaultValue?: T
 
-  constructor(optional: boolean = false, defaultValue?: any) {
+  constructor(optional: boolean = false, defaultValue?: T) {
     if (optional && defaultValue !== undefined) {
       throw new TypeError('optional can not be used with defaultValue');
     }
@@ -10,7 +10,5 @@ export default class BaseField {
     this.defaultValue = defaultValue;
   }
 
-  parse_string(value: string): string {
-    return value
-  }
+  abstract parseString(value: string): T
 }
